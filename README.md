@@ -1,1 +1,1 @@
-# PoetryJam - colaborative poetry writing
+# PoetryJam - collaborative poetry writing
