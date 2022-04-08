@@ -1,15 +1,17 @@
 import React from "react";
-import "./App.css";
-import SignIn from "./SignIn";
+import { Outlet } from "react-router-dom";
+import SignIn from "./components/SignIn";
+import MainNav from "./components/MainNav";
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <h1>Welcome to PoetryJam!</h1>
+    <>
+      <header className="header">
+        <h1 className="title">Welcome to PoetryJam!</h1>
+        <MainNav />
       </header>
-      <SignIn />
-    </div>
+      <Outlet />
+    </>
   );
 }
 
