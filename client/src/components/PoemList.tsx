@@ -16,15 +16,18 @@ const PoemList: FC = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-  return (
-    <ul className={styles.poemList}>
-      {poems?.docs.map((poem) => (
-        <li key={poem.id}>
-          <PoemItem {...{ poem }} />
-        </li>
-      ))}
-    </ul>
-  );
+  if (poems && !poems.empty) {
+    return (
+      <ul className={styles.poemList}>
+        {poems.docs.map((poem) => (
+          <li key={poem.id}>
+            <PoemItem {...{ poem }} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return <div>No poems exist yet!</div>;
 };
 
 export default PoemList;

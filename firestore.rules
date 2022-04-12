@@ -8,7 +8,7 @@ service cloud.firestore {
       allow read;
     }
     match /poems/{poemId} {
-      allow create: if request.auth
+      allow create: if request.auth != null
       && request.auth.uid == request.resource.data.creatorUid
     }
   }
