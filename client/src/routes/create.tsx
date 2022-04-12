@@ -4,7 +4,7 @@ import CreatePoem from "../components/CreatePoem";
 import { auth } from "../firebase";
 
 const Create: FC = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   return (
     <main>
       <h2>Create a poem</h2>

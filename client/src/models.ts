@@ -1,6 +1,7 @@
 import { FieldValue, Timestamp } from "firebase/firestore";
 
 export interface Poem {
+  version: 0;
   firstLine: string;
   createdAt: Timestamp;
   creatorUid: string;

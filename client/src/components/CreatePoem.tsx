@@ -3,7 +3,6 @@ import { addDoc, serverTimestamp } from "firebase/firestore";
 import React, { FC, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { poemsColl } from "../collections";
-import { auth } from "../firebase";
 import { NewPoem } from "../models";
 import styles from "./CreatePoem.module.css";
 
@@ -14,6 +13,7 @@ const CreatePoem: FC<{ user: User }> = ({ user }) => {
   const addPoem = async (e: FormEvent) => {
     e.preventDefault();
     const poem: NewPoem = {
+      version: 0,
       firstLine: firstLine,
       createdAt: serverTimestamp(),
       creatorUid: user.uid,
