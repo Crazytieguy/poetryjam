@@ -1,0 +1,15 @@
+.lines {
+  list-style: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  font-size: 1.1em;
+}
+
+.lines li {
+  padding-top: 0.5rem;
+}
+
+.blurred {
+  color: transparent;
+  text-shadow: 0 0 3px grey;
+}

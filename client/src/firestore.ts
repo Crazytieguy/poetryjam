@@ -31,6 +31,8 @@ export interface Poem {
 
 export const poemsColl = collection(db, "poems") as CollectionReference<Poem>;
 
+export const ROOT = "_ROOT_";
+
 export async function addPoem(title: string, author: PublicUserData) {
   return await addDoc(poemsColl, {
     v: 0,
@@ -59,5 +61,6 @@ export async function appendEntry(
       createdAt: serverTimestamp(),
     },
   };
-  return await updateDoc(poem.ref, data);
+  await updateDoc(poem.ref, data);
+  return lineId;
 }

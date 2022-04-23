@@ -16,6 +16,7 @@ service cloud.firestore {
       && data.author.uid == request.auth.uid
       && data.v == 0
       && data.title is string
+      && data.title != ""
       && data.createdAt == request.time
       && data.entries == {};
     }
@@ -32,6 +33,7 @@ service cloud.firestore {
       && newEntry.keys().hasOnly(["parent", "content", "author", "createdAt"])
       && newEntry.author.uid == request.auth.uid
       && newEntry.content is string
+      && newEntry.content != ""
       && newEntry.createdAt == request.time
       && (
         newEntry.parent == "_ROOT_"
