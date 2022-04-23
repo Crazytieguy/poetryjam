@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./MainNav.module.css";
-import SignIn from "./SignIn";
 
 const activeClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? styles.active : undefined;
@@ -21,9 +20,6 @@ const MainNav: FC = () => {
           </NavLink>
         </li>
       </ul>
-      <div className={styles.signIn}>
-        <SignIn />
-      </div>
     </nav>
   );
 };

@@ -2,14 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write: if false;
+      allow read, write;
     }
     match /poems/{document=**} {
       allow read;
     }
     match /poems/{poemId} {
       allow create: if request.auth != null
-      && request.auth.uid == request.resource.data.creatorUid
+      && request.auth.uid == request.resource.data.author.uid
     }
   }
 }

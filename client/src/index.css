@@ -2,10 +2,12 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 h1,
-h2 {
+main {
   padding-inline: 2rem;
   padding-block: 1rem;
 }

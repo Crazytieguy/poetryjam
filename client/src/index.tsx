@@ -7,6 +7,7 @@ import Home from "./routes/home";
 import Create from "./routes/create";
 import "./reset.css";
 import "./index.css";
+import Poem from "./routes/poem";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
@@ -14,8 +15,10 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route index element={<Home />}></Route>
-        <Route path="create" element={<Create />}></Route>
+        <Route index element={<Home />} />
+        <Route path="poem/:poemId" element={<Poem />} />
+        <Route path="poem/:poemId/:lineId" element={<Poem />} />
+        <Route path="create" element={<Create />} />
         <Route
           path="*"
           element={

@@ -1,27 +1,26 @@
-import { poemsColl } from "../collections";
+import { poemsColl } from "../../firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { limit, Query, query } from "firebase/firestore";
+import { limit, query } from "firebase/firestore";
 import React, { FC } from "react";
-import { Poem } from "../models";
-import PoemItem from "./PoemItem";
+import PoemItem from "../PoemItem";
 import styles from "./PoemList.module.css";
 
-const poemQuery = query(poemsColl, limit(10)) as Query<Poem>;
+const poemQuery = query(poemsColl, limit(10));
 
 const PoemList: FC = () => {
   const [poems, loading, error] = useCollection(poemQuery);
   if (loading) {
-    return <p>Loading poems...</p>;
+    return null;
   }
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>Error loading poems: {error.message}</p>;
   }
   if (!poems || poems.empty) {
-    return <div>No poems exist yet!</div>;
+    return <p>No poems exist yet!</p>;
   }
   return (
     <ul className={styles.poemList}>
-      {poems.docs.map((poem) => (
+      {poems?.docs.map((poem) => (
         <li key={poem.id}>
           <PoemItem {...{ poem }} />
         </li>

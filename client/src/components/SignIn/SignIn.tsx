@@ -1,7 +1,8 @@
 import React, { FC } from "react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+
 
 const SignIn: FC = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
