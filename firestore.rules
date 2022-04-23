@@ -2,14 +2,41 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write;
-    }
-    match /poems/{document=**} {
       allow read;
+      allow write: if false;
     }
     match /poems/{poemId} {
-      allow create: if request.auth != null
-      && request.auth.uid == request.resource.data.author.uid
+      allow create: if validNewPoem();
+      allow update: if validNewEntry();
+    }
+    function validNewPoem() {
+      let data = request.resource.data;
+
+      return data.keys().hasOnly(["v", "title", "author", "createdAt", "entries"])
+      && data.author.uid == request.auth.uid
+      && data.v == 0
+      && data.title is string
+      && data.createdAt == request.time
+      && data.entries == {};
+    }
+    function validNewEntry() {
+      let old = resource.data;
+      let new = request.resource.data;
+      let entriesDiff = new.entries.diff(old.entries);
+      let addedEntryKeys = new.entries.keys().removeAll(old.entries.keys());
+      let newEntry = new.entries.get(addedEntryKeys, null);
+
+      return new.diff(old).affectedKeys() == ["entries"].toSet()
+      && entriesDiff.addedKeys() == entriesDiff.affectedKeys()
+      && addedEntryKeys.size() == 1
+      && newEntry.keys().hasOnly(["parent", "content", "author", "createdAt"])
+      && newEntry.author.uid == request.auth.uid
+      && newEntry.content is string
+      && newEntry.createdAt == request.time
+      && (
+        newEntry.parent == "root"
+        || old.entries.get(newEntry.parent, null).author.uid != newEntry.author.uid
+      );
     }
   }
 }
