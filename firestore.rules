@@ -34,7 +34,7 @@ service cloud.firestore {
       && newEntry.content is string
       && newEntry.createdAt == request.time
       && (
-        newEntry.parent == "root"
+        newEntry.parent == "_ROOT_"
         || old.entries.get(newEntry.parent, null).author.uid != newEntry.author.uid
       );
     }

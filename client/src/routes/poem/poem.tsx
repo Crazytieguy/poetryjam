@@ -6,7 +6,7 @@ import OneLineForm from "../../components/OneLineForm";
 import { appendEntry, poemsColl } from "../../firestore";
 import styles from "./poem.module.css";
 
-const ROOT = "root";
+const ROOT = "_ROOT_";
 
 const Poem: FC = () => {
   const { poemId, lineId } = useParams();
