@@ -16,7 +16,7 @@ const PoemBody: FC<Props> = ({ poem, keyOrder, setEndLineKey }) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const unsetSelectedIdx = () => setSelectedIdx(null);
   const [user] = useAuthState(auth);
-  const autoFocusRef = useCallback((node) => {
+  const autoFocusRef = useCallback((node: HTMLInputElement | null) => {
     if (node) {
       node.focus();
     }
