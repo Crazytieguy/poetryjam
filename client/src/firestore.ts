@@ -25,7 +25,7 @@ export interface Poem {
       content: string;
       author: PublicUserData;
       createdAt: Timestamp;
-    }; // should remove index
+    }; // TODO: remove index
   };
 }
 
@@ -43,16 +43,24 @@ export async function addPoem(title: string, author: PublicUserData) {
   });
 }
 
-export async function appendEntry(
-  content: string,
-  parent: string,
-  author: PublicUserData,
-  poem: QueryDocumentSnapshot<Poem>
-) {
+type AppendEntryArgs = {
+  content: string;
+  parent: string;
+  author: PublicUserData;
+  poem: QueryDocumentSnapshot<Poem>;
+};
+
+export async function appendEntry({
+  content,
+  parent,
+  author,
+  poem,
+}: AppendEntryArgs) {
   let lineId;
+  const entries = poem.data().entries;
   do {
     lineId = crypto.getRandomValues(new Uint16Array(1))[0].toString(36);
-  } while (Object.hasOwn(poem.data().entries, lineId));
+  } while (Object.hasOwn(entries, lineId));
   const data = {
     [`entries.${lineId}`]: {
       parent,

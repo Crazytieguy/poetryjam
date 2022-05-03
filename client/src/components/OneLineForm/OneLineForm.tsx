@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
 import styles from "./OneLineForm.module.css";
 
-interface Props extends React.ComponentPropsWithoutRef<"input"> {
+export interface OLFProps extends React.ComponentPropsWithoutRef<"input"> {
   inputRef?: (node: HTMLInputElement | null) => void;
   onFormSubmit: (value: string) => Promise<void>;
 }
 
-const OneLineForm: FC<Props> = ({
+const OneLineForm: FC<OLFProps> = ({
   onFormSubmit,
   inputRef,
   ...inputAttributes
