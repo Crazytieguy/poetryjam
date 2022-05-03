@@ -1,0 +1,15 @@
+.poemItem {
+  display: block;
+  min-width: 30ch;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 2px black, inset 0px 0px 1px black;
+  transition: transform 100ms ease-in-out;
+}
+
+.poemItem:is(:hover, :focus) {
+  transform: translate(-3px, -3px);
+}

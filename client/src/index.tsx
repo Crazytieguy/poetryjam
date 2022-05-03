@@ -1,12 +1,36 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import App from "./App";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+import Home from "./routes/home";
+import Create from "./routes/create";
+import "./reset.css";
+import "./index.css";
+import PoemRoute from "./routes/poem";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="poem/:poemId" element={<PoemRoute />} />
+        <Route path="poem/:poemId/:lineId" element={<PoemRoute />} />
+        <Route path="create" element={<Create />} />
+        <Route
+          path="*"
+          element={
+            <main>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Route>
+    </Routes>
+  </BrowserRouter>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,0 +1,30 @@
+.mainNav {
+  display: flex;
+  align-items: center;
+  padding-inline: 2rem;
+}
+
+.mainNav ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+}
+
+.mainNav li ~ li {
+  padding-left: 3rem;
+}
+
+.mainNav a {
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.mainNav a:is(:hover, :focus) {
+  text-shadow: 1px 1px 1px;
+}
+
+.mainNav a.active {
+  color: grey;
+  cursor: default;
+  text-shadow: none;
+}

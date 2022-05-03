@@ -1,1 +1,18 @@
-@import-normalize;
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+h1,
+main {
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.center {
+  display: grid;
+  justify-items: center;
+}
